@@ -1,0 +1,72 @@
+{
+    "things": [
+      {
+        "id": 1,
+        "name": "robo-cleaner1",
+        "modelId": "Roomba - Model 1",
+        "location": "living room",
+        "connectivity": ["wifi"],
+        "controllers": [
+            "alexa",
+            "google-home",
+            "app"
+        ],
+        "credentials": {
+            "uname": "3e87bcdc-f925-4696-919d-59a0a44a7eed",
+            "pass": "5d6f4dfa-d483-4f02-82ce-43fc11fdcdad"
+        },
+        "type": "cleaning"
+      },
+      {
+        "id": 2,
+        "name": "lighting-set1",
+        "modelId": "TP-Link",
+        "location": "living room",
+        "connectivity": ["wifi", "bluetooth"],
+        "controllers": [
+            "alexa",
+            "google-home",
+            "app"
+        ],
+        "credentials": {
+            "uname": "c9af31a2-5448-463a-bef8-1113932915e8",
+            "pass": "1fb1c792-4552-424b-807b-1f737b2f56d2"
+        },
+        "type": "lighting"
+      },
+      {
+        "id": 3,
+        "name": "lighting-set2",
+        "modelId": "TP-Link",
+        "location": "game room",
+        "connectivity": ["wifi", "bluetooth"],
+        "controllers": [
+            "alexa",
+            "google-home",
+            "app"
+        ],
+        "credentials": {
+            "uname": "9f783099-b26f-41ca-875e-8aeee4017552",
+            "pass": "e2a0e287-3f45-4fef-92ae-866c664e8ea6"
+        },
+        "type": "lighting"
+      },
+      {
+        "id": 4,
+        "name": "security-system",
+        "modelId": "brinx",
+        "location": "full home",
+        "connectivity": ["wifi", "z-wave"],
+        "controllers": [
+            "alexa",
+            "google-home",
+            "app"
+        ],
+        "credentials": {
+            "uname": "5856d709-2481-47cc-b788-1cc74f3c4c96",
+            "pass": "7f46c66c-7195-45bc-b5e3-f51ebac35cb8"
+        },
+        "type": "security"
+      }
+    ]
+  }
