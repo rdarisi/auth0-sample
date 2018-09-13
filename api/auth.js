@@ -1,3 +1,4 @@
+//AUTHOR: Raghav Darisi
 var auth = {};
 auth.hasScope = function(scope) {
     return function(req, res, next) {

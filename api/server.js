@@ -1,9 +1,9 @@
 //AUTHOR: Raghav Darisi
-
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var router = require('./router');
+var config = require('./config');
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 
@@ -11,24 +11,23 @@ const jwks = require('jwks-rsa');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || config.apiPort;
 
-//app.use(auth.jwtCheck("http://localhost:8080/api/v1/items"));
 app.use(
     jwt({
         secret: jwks.expressJwtSecret({
         cache: true,
         rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: "https://rdxonline.auth0.com/.well-known/jwks.json"
+        jwksRequestsPerMinute: config.jwksRequestsPerMinute,
+        jwksUri: config.jwksUri
     }),
-    audience: 'http://localhost:8080/api/v1/items',
-    issuer: "https://rdxonline.auth0.com/",
-    algorithms: ['RS256']
+    audience: config.jwtAudience, //should be veriable
+    issuer: config.issuer,
+    algorithms: config.jwtAlgos
     })
 );
 
 app.use('/api/v1', router);
 
 app.listen(port);
-console.log('Api server running on ' + port);
+console.log('Api server running on ' + config.apiPort);
