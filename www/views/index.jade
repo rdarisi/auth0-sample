@@ -1,0 +1,18 @@
+extend layout
+block content
+    p
+        table
+            thead
+                tr: th Things 
+            tbody
+                each item in items
+                    tr
+                        td=item.id
+                        td=item.name
+                        td=item.modelId
+                        td=item.location
+                        td=JSON.stringify(item.connectivity)
+                        td=item.controllers
+                        td=JSON.stringify(item.credentials)
+                        td=item.type 
+

@@ -1,0 +1,36 @@
+body {
+    margin:5px 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+header {
+    Padding: 50px 20px;
+    background-color: #ccc;
+    border: 5px solid#ccc;
+}
+
+footer {
+    margin-top:10px;
+    padding-top:5px;
+    border-top: 1px solid #ccc;
+}
+
+
+table {  
+    color: #333; 
+    border-collapse: 
+    collapse; border-spacing: 0; 
+}
+
+td, th { border: 1px solid #CCC; height: 30px; }
+
+th {  
+    background: #F3F3F3; 
+    font-weight: bold;
+}
+
+td {  
+    background: #FAFAFA; 
+    text-align: center;
+    padding:4px; 
+}
