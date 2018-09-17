@@ -8,7 +8,7 @@ auth.hasScope = function(scope) {
             next();
         }
         else {
-            res.send(401);
+            res.status(403).json({code: 403, message: "not a valid scope"});
         }
     };
 };
