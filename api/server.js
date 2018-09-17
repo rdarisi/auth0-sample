@@ -27,6 +27,15 @@ app.use(
     })
 );
 
+app.use(function(err, req, res, next) {
+    if(err) {
+        res.status(err.status).json({code:err.status, message:err.message});
+    }
+    else {
+        next();
+    }
+});
+
 app.use('/api/v1', router);
 
 app.listen(port);
