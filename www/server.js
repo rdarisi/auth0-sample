@@ -82,5 +82,13 @@ app.get('/error', function(req, res) {
     res.render('error', {} );
 })
 
+
+app.delete("/api/v1/items/:id", function(req, res) {
+    console.log(req.params.id);
+    api.deleteItem(req.params.id, req.user.accessToken, function(data) {
+        res.send(200);   
+    })
+})
+
 app.listen(port);
 console.log('Api server running on ' + port);

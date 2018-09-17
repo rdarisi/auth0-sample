@@ -6,7 +6,7 @@ block content
                 tr: th Things 
             tbody
                 each item in items
-                    tr
+                    tr(id='tr_#{item.id}')
                         td=item.id
                         td=item.name
                         td=item.modelId
@@ -14,5 +14,8 @@ block content
                         td=JSON.stringify(item.connectivity)
                         td=item.controllers
                         td=JSON.stringify(item.credentials)
-                        td=item.type 
+                        td=item.type
+                        td
+                            a(href="javascript:void(0)" onclick="deleteItem(#{item.id})") Delete
+    p
 
