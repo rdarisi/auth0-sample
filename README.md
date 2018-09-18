@@ -42,7 +42,7 @@ In this sample two custom rules are utilized
 
 2. Login-Location: This rule is used to enhance the user profile. By retrieving the current login location (Auth0 gives that information for all logins) and comparing with the User's home coordinates this rules finds the distance between the two and adds the same to the user's token.
 
-## Configure Auth0
+## Auth0 Configuration
 
 Here are the steps involved in configuring Auth0 Application and API for custom
 
