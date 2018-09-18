@@ -5,7 +5,7 @@ var config = {
     clientID: 'GxhuMfcddTRg7Tzb2nPwB3TB9muYOzwJ',
     clientSecret: 'ZQRMxlMyWYLtllWZIlv9tS2VkENQbD0jYuCVc-xfoaLvVYhdDOpLLd5T_P6svzcH',
     callbackURL: '/callback',
-    scopes: ['profile', 'email', 'openid', 'offline_access'],
+    scopes: ['profile', 'email', 'openid', 'offline_access', 'items:read', 'items:write', 'items:delete'],
     audience: 'http://localhost:8080/api/v1/items',
     port: 3000,
     apiItems: 'http://localhost:8080/api/v1/items'

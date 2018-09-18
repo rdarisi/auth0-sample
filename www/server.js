@@ -71,7 +71,10 @@ app.get('/', function(req, res) {
     if(req.user) {
         console.log(req.user);
         api.getItems(req.user.accessToken, function(data) {
+            console.log(req.user);
             res.render('index', {'items': data, 'user': req.user} );
+        }, function(data) {
+            res.send(500);
         })
     }
     else {

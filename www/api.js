@@ -7,6 +7,7 @@ api.getItems = function(access_token, successCB, errorCB) {
     .headers({'Authorization': 'Bearer ' + access_token})
     .send()
     .end(function(response) {
+        console.log(response.code);
         if(response.code == 200) {
             successCB(response.body);
         }
