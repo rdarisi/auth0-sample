@@ -32,11 +32,11 @@ A rule is a custom code that gets executed in the authentication/authorization f
 In this sample two custom rules are utilized
 1. Privileges: This rule is used to assign a scope by looking at the role of the user. When the rule executes the user's app meta data is retrieved and depending on the role specified the Access Token scopes are updated with one or more of these scopes. 
 
-Logic:
-  * Get the roles requested by the application
-  * Get the list of scopes for the user's role
-  * Do an intersection of the scopes to get the only scopes that the app/user requested/granted
-  * Remove duplicates
+  Logic:
+    * Get the scopes requested by the application
+    * Get the list of scopes for the user's role
+    * Do an intersection of the scopes to get the only scopes that the app/user requested/granted
+    * Remove duplicates
 
 2. Login-Location: This rule is used to enhance the user profile. By retrieving the current login location (Auth0 gives that information for all logins) and comparing with the User's home coordinates this rules finds the distance between the two and adds the same to the user's token.
 
