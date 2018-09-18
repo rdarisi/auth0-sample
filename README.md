@@ -53,7 +53,7 @@ Now you have an application that can be used in conjunction with OIDC scopes (op
   * Switch on "Allow Offline Access" for Refresh Token flow
   * In the scopes section create items:read, items:write, items:delete scopes
   
-* Setting User
+* Setting up User
   * Create a user in Auth0
   * Update user's meta_data with user's home location
   ```
