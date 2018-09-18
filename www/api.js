@@ -1,9 +1,9 @@
 var unirest = require('unirest');
-
+var config = require('./config');
 var api = {};
 
 api.getItems = function(access_token, successCB, errorCB) {
-    unirest.get('http://localhost:8080/api/v1/items')
+    unirest.get(config.apiItems)
     .headers({'Authorization': 'Bearer ' + access_token})
     .send()
     .end(function(response) {
@@ -18,18 +18,36 @@ api.getItems = function(access_token, successCB, errorCB) {
 }
 
 api.deleteItem = function(id, access_token, successCB, errorCB) {
-    unirest.delete('http://localhost:8080/api/v1/items/' + id)
+    unirest.delete(config.apiItems + '/' + id)
     .headers({'Authorization': 'Bearer ' + access_token})
     .send()
     .end(function(response) {
         if(response.code == 200) {
-            successCB('OK');
+            successCB();
         }
         else {
-            errorCB();
+            errorCB(response.body);
         }
     })
 }
 
+api.postItem = function(json,access_token, successCB, errorCB) {
+    unirest.post(config.apiItems + '/')
+    .headers(
+        {
+            'Authorization': 'Bearer ' + access_token,
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json'
+        })
+    .send(json)
+    .end(function(response) {
+        if(response.code == 200) {
+            successCB(response.body);
+        }
+        else {
+            errorCB(response.body);
+        }
 
+    });
+}
 module.exports = api;

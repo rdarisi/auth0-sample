@@ -11,6 +11,7 @@ router.get('/items', auth.hasScope('items:read'), (req, res) => {
 router.post('/items', auth.hasScope('items:write'), (req, res) => {
     var id = data.things[data.things.length - 1].id;
     req.body["id"] = id + 1;
+    console.log(req.body);
     data.things.push(req.body);
     res.status(200).json(data.things);
 });

@@ -1,6 +1,17 @@
 extend layout
 block content
     p
+        div(id="user") Logged in User:
+            div 
+                img(src="#{user.picture}" height=50 width=50)
+            div id: #{user.id}
+            div Display name: #{user.nickname}
+            div Logged in from: #{user._json["https://rdxonline.com/geoip"].city_name}, #{user._json["https://rdxonline.com/geoip"].country_code3}
+            div Distance from home: #{user._json["https://rdxonline.com/geoip"].distanceFromHome} miles
+            
+        
+    p
+        div(id="error")
         table
             thead
                 tr: th Things 
@@ -18,4 +29,27 @@ block content
                         td
                             a(href="javascript:void(0)" onclick="deleteItem(#{item.id})") Delete
     p
+        table
+            thead
+                tr: th Add
+            tbody
+                    tr
+                        td
+                            input(text id="name" placeholder="Name")
+                        td
+                            input(text id="modelId" placeholder="Model")
+                        td
+                            input(text id="location" placeholder="location")
+                        td
+                            input(text id="connectivity" placeholder="connectivity (space seperated)")
+                        td
+                            input(text id="controllers" placeholder="controllers (space seperated)")
+                        td
+                            input(text id="username" placeholder="Username")
+                        td
+                            input(text id="password" placeholder="password")
+                        td
+                            input(text id="type" placeholder="Type")
+                        td
+                            a(href="javascript:void(0)" onclick="addItem()") Add
 

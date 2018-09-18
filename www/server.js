@@ -1,26 +1,27 @@
 var express = require('express');
 var app = new express();
-var port = process.env.PORT || 3000;
+
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var api = require('./api');
-
+var config = require('./config');
 var Auth0Strategy = require('passport-auth0');
 var passport = require('passport');
 
+var port = process.env.PORT || config.port;
 
 app.use(session({
     resave: false,
     saveUninitialized: true,
-    secret: 'auth0isgr8!' 
+    secret: config.sessionSecret
 }));
 var strategy = new Auth0Strategy(
     {
-        domain: 'rdxonline.auth0.com',
-        clientID: 'GxhuMfcddTRg7Tzb2nPwB3TB9muYOzwJ',
-        clientSecret: 'ZQRMxlMyWYLtllWZIlv9tS2VkENQbD0jYuCVc-xfoaLvVYhdDOpLLd5T_P6svzcH',
-        callbackURL: '/callback',
-        scope: ['profile', 'email', 'openid', 'offline_access']
+        domain: config.domain,
+        clientID: config.clientID,
+        clientSecret: config.clientSecret,
+        callbackURL: config.callbackURL,
+        scope: config.scopes
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
         profile.accessToken = accessToken;
@@ -62,15 +63,15 @@ app.get('/callback',
 );
 
 app.get('/login',
-  passport.authenticate('auth0', {'audience': 'http://localhost:8080/api/v1/items'}), function (req, res) {
+  passport.authenticate('auth0', {'audience': config.audience}), function (req, res) {
   res.redirect("/");
 });
 
 app.get('/', function(req, res) {
     if(req.user) {
-        console.log(req.user.refreshToken);
+        console.log(req.user);
         api.getItems(req.user.accessToken, function(data) {
-            res.render('index', {'items': data} );
+            res.render('index', {'items': data, 'user': req.user} );
         })
     }
     else {
@@ -86,9 +87,19 @@ app.get('/error', function(req, res) {
 app.delete("/api/v1/items/:id", function(req, res) {
     console.log(req.params.id);
     api.deleteItem(req.params.id, req.user.accessToken, function(data) {
-        res.send(200);   
+        res.status(202).json({"code": 202, "message": "item deleted!"});
+    }, function(error) {
+        res.status(error.code).json(error);
     })
 })
 
+app.post("/api/v1/items/", function(req,res) {
+    console.log(req.body);
+    api.postItem(req.body, req.user.accessToken, function() {
+        res.status(201).json({"code": 201, "message": "item created!"});
+    }, function(error) {
+        res.status(error.code).json(error);
+    });
+});
 app.listen(port);
 console.log('Api server running on ' + port);
