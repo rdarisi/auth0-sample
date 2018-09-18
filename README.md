@@ -1,6 +1,6 @@
 # auth0-sample
 
-This is a sample application that demos the usage of scopes for access control with auth0. It also showcase the usage of rules for access control and profile enchancement.
+This is a sample application that demos the usage of scopes for access control with auth0. It also showcases the usage of rules for access control and profile enhancement.
 
 <img src="./doc/auth.png" />
 
@@ -30,7 +30,13 @@ These scopes are configured at the API level as custom scopes. The mapping of th
 A rule is a custom code that gets executed in the authentication/authorization flow, as shown in the sequence below. Rules are written in Node.js, there are a set of helper modules that are available for rules https://auth0.com/docs/appliance/modules.
 
 In this sample two custom rules are utilized
-1. Privileges: This rule is used to assign a scope by looking at the role of the user. When the rule executes the user's app meta data is retrieved and depending on the role specified the Access Token scopes are updated with one or more of these scopes.
+1. Privileges: This rule is used to assign a scope by looking at the role of the user. When the rule executes the user's app meta data is retrieved and depending on the role specified the Access Token scopes are updated with one or more of these scopes. 
+
+Logic:
+  * Get the roles requested by the application
+  * Get the list of scopes for the user's role
+  * Do an intersection of the scopes to get the only scopes that the app/user requested/granted
+  * Remove duplicates
 
 2. Login-Location: This rule is used to enhance the user profile. By retrieving the current login location (Auth0 gives that information for all logins) and comparing with the User's home coordinates this rules finds the distance between the two and adds the same to the user's token.
 
@@ -47,7 +53,7 @@ Here are the steps involved in configuring Auth0 Application and API for custom
   * Update the Application settings as per your needs
     * Add http://localhost:3000/callback to allowed callbacks
  
-Now you have an application that can be used in conjunction with OIDC scopes (openid, profile, email). This example also needs further granular scopes to make access control decissions for that
+Now you have an application that can be used in conjunction with OIDC scopes (openid, profile, email). This example also needs further granular scopes to make access control decisions for that
  
 * Create an API
   * Switch on "Allow Offline Access" for Refresh Token flow
@@ -70,7 +76,7 @@ Now you have an application that can be used in conjunction with OIDC scopes (op
     "role": "admin/adult/child"
   }
   ```
-## Installtion 
+## Installation 
   
 Download code from the repo. For setting up the backend API
   
@@ -87,10 +93,3 @@ Download code from the repo. For setting up the backend API
   npm install
   node server.js
   ```
-  
-  
-  
-
-  
- 
-
