@@ -17,7 +17,8 @@ The frontend web app is used by users to login and add/delete/view the inventory
 
 In this flow, custom behavior is injected by using Auth0 rules.
 
-##Scopes
+## Scopes
+
 OIDC scopes like openid, profile, email are used in this application to retrieve user profile information. The fine grain access control needed to read, write, delete application data is controlled by items:read, items:write, items:delete scopes.
 
 These scopes are configured at the API level as custom scopes. The mapping of these scopes for a given user is done retrieving the user's app_metadata and figuring out the role of the user. Using the below mapping the token issued is updated with the appropriate scope.
@@ -26,7 +27,8 @@ These scopes are configured at the API level as custom scopes. The mapping of th
 * Adult: items:read, items:write
 * Child: items:read
 
-##Rules
+## Rules
+
 A rule is a custom code that gets executed in the authentication/authorization flow, as shown in the sequence below. Rules are written in Node.js, there are a set of helper modules that are available for rules https://auth0.com/docs/appliance/modules.
 
 In this sample two custom rules are utilized
