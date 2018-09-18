@@ -70,7 +70,7 @@ Now you have an application that can be used in conjunction with OIDC scopes (op
     "role": "admin/adult/child"
   }
   ```
-  ## Installtion 
+## Installtion 
   
 Download code from the repo. For setting up the backend API
   
