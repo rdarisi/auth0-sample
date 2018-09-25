@@ -67,6 +67,11 @@ app.get('/login',
   res.redirect("/");
 });
 
+app.get('/logout',function(req, res) {
+    req.logout();
+    res.redirect('https://rdxonline.auth0.com/v2/logout');
+});
+
 app.get('/', function(req, res) {
     if(req.user) {
         console.log(req.user);
